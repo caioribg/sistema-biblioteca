@@ -3,11 +3,11 @@ from datetime import date
 
 ano_atual = date.today().year
 
-
+#1) Abertura e leitura do arquivo JSON:
 def cadastrar_livro():
     with open("dados.json", "r", encoding="utf-8") as arquivo:
         livros = json.load(arquivo)
-    
+#2) Geração automática do ID:   
     if not livros:
         identificador = 1
     else:
@@ -18,22 +18,28 @@ def cadastrar_livro():
                 maior_id = livro["id"]
             
         identificador = maior_id + 1
-    
+
+#3) Entrada e validação dos dados:
+
+    #1.0)  Validação do TÍTULO
     titulo = input("Título do livro: ").strip()
     while not titulo:
         print("\nERRO: Informe o título do livro.\nTente novamente.", end=" ")
         titulo = input("Título do livro: ").strip()
 
+    #1.1) Validação do AUTOR
     autor = input("Nome do autor: ").strip()
     while not autor:
         print("\nERRO: Informe o nome do autor.\nTente novamente.", end=" ")
         autor = input("Nome do autor: ").strip()
 
+    #1.2) Validação da EDITORA
     editora = input("Nome da editora: ").strip()
     while not editora:
         print("\nERRO: Informe o nome da editora.\nTente Novamente.", end=" ")
         editora = input("Nome da editora: ").strip()
 
+    #1.3) Validação do ANO:
     while True:
         try:
             ano = int(input("Ano de publicação: "))
@@ -44,7 +50,8 @@ def cadastrar_livro():
 
         except ValueError:
             print("\nERRO: Informe um valor numérico.\nTente novamente.", end=" ")
-    
+   
+    #1.4) Validação da QUANTIDADE:
     while True:
         try:
             quantidade = int(input("Quantidade disponível: "))
@@ -57,6 +64,7 @@ def cadastrar_livro():
         except ValueError:
             print("\nERRO: Informe um valor numérico.\nTente novamente.", end=" ")
     
+    #1.5) Validação do ISBN:
     isbn = input("ISBN do livro: ").strip()
     while True:
         isbn_existente = False
@@ -79,8 +87,9 @@ def cadastrar_livro():
             isbn = input("ISBN do livro: ").strip()
         
         else:
-            break        
-        
+            break      
+
+#4) Criação do dicionário do livro        
     livro = {
         "id": identificador,
         "titulo": titulo,
@@ -92,6 +101,7 @@ def cadastrar_livro():
     }
  
     livros.append(livro)
-
+    
+#5) Gravando os dados no arquivo JSON:
     with open("dados.json", "w", encoding="utf-8") as arquivo:
         json.dump(livros, arquivo, ensure_ascii=False, indent=4)
