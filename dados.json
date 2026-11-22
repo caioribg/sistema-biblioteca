@@ -1,1 +1,56 @@
-[]
+[
+    {
+        "id": 1,
+        "titulo": "Star Wars",
+        "autor": "George Lucas",
+        "editora": "Darkside",
+        "ano": 1977,
+        "isbn": "9780000000001",
+        "quantidade": 5
+    },
+    {
+        "id": 2,
+        "titulo": "Killer Clown",
+        "autor": "Terry Sullivan e Peter Maiken",
+        "editora": "Darkside",
+        "ano": 2019,
+        "isbn": "8420000000012",
+        "quantidade": 3
+    },
+    {
+        "id": 3,
+        "titulo": "Duna",
+        "autor": "Frank Herbert",
+        "editora": "Aleph",
+        "ano": 1965,
+        "isbn": "9788576573135",
+        "quantidade": 4
+    },
+    {
+        "id": 4,
+        "titulo": "Ted Bundy",
+        "autor": "Ann Rule",
+        "editora": "Darkside",
+        "ano": 2019,
+        "isbn": "9788594541543",
+        "quantidade": 7
+    },
+    {
+        "id": 5,
+        "titulo": "Mickey-As Minas de Fantametallo",
+        "autor": "Andrea Castellan",
+        "editora": "Abril",
+        "ano": 2011,
+        "isbn": "9770104211008",
+        "quantidade": 10
+    },
+    {
+        "id": 6,
+        "titulo": "Zé Carioca - As Primeira Férias do Milionário Rocha Vaz",
+        "autor": "Arthur Faria Jr",
+        "editora": "Abril",
+        "ano": 2013,
+        "isbn": "9770104340005",
+        "quantidade": 0
+    }
+]
