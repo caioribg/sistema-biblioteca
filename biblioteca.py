@@ -105,3 +105,78 @@ def cadastrar_livro():
 #5) Gravando os dados no arquivo JSON:
     with open("dados.json", "w", encoding="utf-8") as arquivo:
         json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+
+def lista_livros():
+    
+    with open("dados.json", "r", encoding="utf-8") as arquivo:
+        livros = json.load(arquivo)
+
+    if not livros:
+        print("\nBiblioteca vazia. Não há livros cadastrados.")
+        return
+    
+    for livro in livros:
+        print(f'''
+ID: {livro["id"]}
+Título: {livro["titulo"]}
+Autor: {livro["autor"]}
+Editora: {livro["editora"]}
+ISBN: {livro["isbn"]}
+Ano: {livro["ano"]}
+Quantidade: {livro["quantidade"]}''')
+        print("______________________")
+
+def pesquisar_por_id():
+    with open("dados.json", "r", encoding="utf-8") as arquivo:
+        livros = json.load(arquivo)
+
+        while True:
+            try:
+                id_livro = int(input("Digite o ID do livro: "))
+
+                if id_livro <= 0:
+                    print("\nERRO: Informe um número positivo.\nTente novamente.", end=" ")
+                    continue
+                    
+            except ValueError:
+                print("\nERRO: Informe um valor numérico.\nTente novamente.",end=" ") 
+                continue
+            break
+
+        for livro in livros:
+            if livro["id"] == id_livro:
+                print(f'''
+Título: {livro["titulo"]}
+Autor: {livro["autor"]}
+Editora: {livro["editora"]}
+Ano: {livro["ano"]}
+ISBN: {livro["isbn"]}
+Quantidade: {livro["quantidade"]}
+''')
+                break
+        
+        else: 
+            print("\nLivro não encontrado")
+
+def pesquisar_por_titulo():
+    with open("dados.json", "r", encoding="utf-8") as arquivo:
+        livros = json.load(arquivo)
+
+        livro_encontrado = False
+        titulo_livro = input("Digite o título do livro: ").lower().strip()
+
+        for livro in livros:
+            if titulo_livro in livro["titulo"].lower():
+                print("Livro Encontrado. ")
+                livro_encontrado = True
+                print(f'''
+Título: {livro["titulo"]}
+Autor: {livro["autor"]}
+Editora: {livro["editora"]}
+Ano: {livro["ano"]}
+ISBN: {livro["isbn"]}
+Quantidade: {livro["quantidade"]}
+''')
+        if not livro_encontrado:
+            print("Livro não encontrado.")
+
