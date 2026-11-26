@@ -180,3 +180,170 @@ Quantidade: {livro["quantidade"]}
         if not livro_encontrado:
             print("Livro não encontrado.")
 
+def atualizar_livro():
+    with open("dados.json", "r", encoding="utf-8") as arquivo:
+        livros = json.load(arquivo)
+
+    while True:
+        try:
+            id_livro = int(input("Digite o ID do livro: "))
+
+            if id_livro <= 0:
+                print("\nERRO: Informe um número positivo.\nTente novamente.", end=" ")
+                continue
+                
+        except ValueError:
+            print("\nERRO: Informe um valor numérico.\nTente novamente.",end=" ") 
+            continue
+        break
+
+    for livro in livros:
+        if livro["id"] == id_livro:
+            print(f'''
+Título: {livro["titulo"]}
+Autor: {livro["autor"]}
+Editora: {livro["editora"]}
+Ano: {livro["ano"]}
+ISBN: {livro["isbn"]}
+Quantidade: {livro["quantidade"]}
+''')
+            print('''1 - Alterar título
+2 - Alterar autor
+3 - Alterar editora
+4 - Alterar ano
+5 - Alterar isbn
+6 - Alterar quantidade
+0 - Voltar''')
+
+            while True:
+                try:
+                    escolha = int(input("\nEscolha uma opção: "))
+                    if escolha < 0 or escolha > 6:
+                        print("\nERRO: Informe um valor entre 0 e 6.")
+                        continue
+                    
+                    elif escolha == 1:
+                        novo_titulo = input("Digite o novo título: ").strip()
+                        while not novo_titulo:
+                            print("ERRO: O título não pode ficar vazio.")
+                            novo_titulo = input("Digite o novo título: ").strip()
+
+                        livro["titulo"] = novo_titulo
+
+                        with open("dados.json", "w", encoding="utf-8") as arquivo:
+                            json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+
+                        print("\nTítulo atualizado com sucesso!")
+                    
+                    elif escolha == 2:
+                        novo_autor = input("Digite o nome do novo autor: ").strip()
+                        while not novo_autor:
+                            print("ERRO: O autor não pode ficar vazio.")
+                            novo_autor = input("Digite o nome do novo autor: ").strip()
+
+                        livro["autor"] = novo_autor
+
+                        with open("dados.json", "w", encoding="utf-8") as arquivo:
+                            json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+                        
+                        print("\nAutor atualizado com sucesso!")
+
+                    elif escolha == 3:
+                        nova_editora = input("Digite a nova editora: ").strip()
+                        while not nova_editora:
+                            print("ERRO: A editora não pode ficar vazia.")
+                            nova_editora = input("Digite a nova editora: ").strip()
+                        
+                        livro["editora"] = nova_editora
+
+                        with open("dados.json", "w", encoding="utf-8") as arquivo:
+                            json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+                        
+                        print("\nEditora atualizada com sucesso!")
+
+                    elif escolha == 4:
+                        while True:
+                            try:
+                                novo_ano = int(input("Ano de publicação: "))
+                                if novo_ano <= 0 or novo_ano > ano_atual:
+                                    print(f"\nERRO: Ano inválido.\nTente novamente.", end=" ")
+                                    continue
+                                else:
+                                    break
+
+                            except ValueError:
+                                print("\nERRO: Informe um valor numérico.\nTente novamente.", end=" ")
+                        
+                        livro["ano"] = novo_ano
+
+                        with open("dados.json", "w", encoding="utf-8") as arquivo:
+                            json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+                        
+                        print("\nAno atualizado com sucesso!")
+                    
+                    elif escolha == 5:
+                        novo_isbn = input("ISBN do livro: ").strip()
+                        while True:
+                            isbn_existente = False
+
+                            while not novo_isbn:
+                                print("\nERRO: Informe o ISBN.\nTente novamente.", end=" ")
+                                novo_isbn = input("ISBN do livro: ").strip()
+                            
+                            
+                            while not novo_isbn.isdigit():
+                                print("\nERRO: O ISBN deve conter somente números.\nTente novamente.", end=" ")
+                                novo_isbn = input("ISBN do livro: ").strip()
+                                
+                            for outro_livro in livros:
+                                if outro_livro["id"] != id_livro:
+                                    if outro_livro["isbn"] == novo_isbn:
+                                        isbn_existente = True
+                                        break
+                                    
+                            if isbn_existente:
+                                print("\nERRO: ISBNs iguais, informe o ISBN correto.\nTente novamente.",end=" ")
+                                novo_isbn = input("ISBN do livro: ").strip()
+        
+                            else:
+                                break
+                                
+                        livro["isbn"] = novo_isbn
+                    
+                        with open("dados.json", "w", encoding="utf-8") as arquivo:
+                            json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+                    
+                        print("\nISBN atualizado com sucesso!")
+
+                    elif escolha == 6:
+                        while True:
+                            try:
+                                nova_quantidade = int(input("Quantidade nova: "))
+
+                                if nova_quantidade < 0:
+                                    print("\nERRO: Informe um valor positivo ou igual a zero.\nTente novamente.", end=" ")
+                                    continue
+                                else:
+                                    break
+
+                            except ValueError:
+                                print("\nERRO: Informe um valor numérico.\nTente novamente.", end=" ")
+
+                        livro["quantidade"] = nova_quantidade
+
+                        with open("dados.json", "w", encoding="utf-8") as arquivo:
+                            json.dump(livros, arquivo, ensure_ascii=False, indent=4)
+
+                        print("\nQuantidade atualizada com sucesso!")  
+
+                    break
+                except ValueError:
+                    print("\nERRO: Informe um valor numérico.\nTente novamente.", end=" ")
+            break
+    else: 
+        print("\nLivro não encontrado")
+        return
+
+    
+
+

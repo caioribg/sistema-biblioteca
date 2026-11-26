@@ -1,4 +1,4 @@
-from biblioteca import cadastrar_livro, lista_livros, pesquisar_por_id, pesquisar_por_titulo
+from biblioteca import cadastrar_livro, lista_livros, pesquisar_por_id, pesquisar_por_titulo, atualizar_livro
 def menu():
     print("\n")
     print(28*"-=")
@@ -55,6 +55,13 @@ def menu():
             print(28*"-=")
             print("\t\tATUALIZAR LIVRO")
             print(28*"-=")
+            atualizar_livro()
+            print('''\n1 - Cadastrar livro
+2 - Listar livros
+3 - Pesquisar livro
+4 - Atualizar livro
+5 - Excluir livro
+0 - Sair\n''')
 
         elif opc == 5:
             print(28*"-=")

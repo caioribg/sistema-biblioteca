@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "titulo": "Star Wars",
+        "titulo": "Star Wars - O Despertar da Força",
         "autor": "George Lucas",
         "editora": "Darkside",
         "ano": 1977,
@@ -50,7 +50,7 @@
         "autor": "Arthur Faria Jr",
         "editora": "Abril",
         "ano": 2013,
-        "isbn": "9770104340005",
+        "isbn": "4320980561126",
         "quantidade": 0
     }
 ]
