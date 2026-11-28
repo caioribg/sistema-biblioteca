@@ -18,15 +18,6 @@
         "quantidade": 3
     },
     {
-        "id": 3,
-        "titulo": "Duna",
-        "autor": "Frank Herbert",
-        "editora": "Aleph",
-        "ano": 1965,
-        "isbn": "9788576573135",
-        "quantidade": 4
-    },
-    {
         "id": 4,
         "titulo": "Ted Bundy",
         "autor": "Ann Rule",
